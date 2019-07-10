@@ -1,0 +1,12 @@
+u10:
+  call-limiter:
+    cache-manager:
+      one:
+        expireAfterWrite: 1
+      two:
+        expireAfterWrite: 5
+    limit-manager:
+      cache-size: 1024
+      pool-size: 0
+
+

@@ -1,0 +1,15 @@
+{
+  "groups": [
+
+  ],
+  "properties": [
+    {
+      "name": "u10.call-limiter.cache-manager",
+      "type": "java.util.Map<java.lang.String,io.github.u10.utils.calllimiter.config.CacheManagerProperties>"
+    },
+    {
+      "name": "u10.call-limiter.limit-manager",
+      "type": "io.github.u10.utils.calllimiter.config.LimitManagerProperties"
+    }
+  ]
+}

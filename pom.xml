@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>io.github.u10</groupId>
 	<artifactId>utils.calllimiter</artifactId>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>0.0.4-SNAPSHOT</version>
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Call limit tool for Spring Boot</description>
 	<url>https://github.com/u10/calllimiter</url>
@@ -40,6 +40,8 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<guava.version>27.1-jre</guava.version>
+		<caffeine.version>2.6.2</caffeine.version>
 	</properties>
 
 	<dependencies>
@@ -50,13 +52,24 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.ben-manes.caffeine</groupId>
+			<artifactId>caffeine</artifactId>
+			<version>${caffeine.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>27.1-jre</version>
+			<version>${guava.version}</version>
 		</dependency>
 
 		<dependency>

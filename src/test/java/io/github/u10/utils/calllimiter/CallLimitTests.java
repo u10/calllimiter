@@ -3,6 +3,8 @@ package io.github.u10.utils.calllimiter;
 import java.util.Arrays;
 import java.util.concurrent.ForkJoinPool;
 import io.github.u10.utils.calllimiter.annotation.EnableCallLimiter;
+import io.github.u10.utils.calllimiter.annotation.EnableCallLimiterCacheManager;
+import io.github.u10.utils.calllimiter.dataproviders.impl.MyDataProvider0;
 import io.github.u10.utils.calllimiter.services.TestService;
 import io.github.u10.utils.calllimiter.services.impl.MyTestService0;
 import io.github.u10.utils.calllimiter.services.impl.MyTestService1;
@@ -22,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @SpringBootApplication
 @EnableCallLimiter
+@EnableCallLimiterCacheManager
 @Slf4j
 public class CallLimitTests {
 	private ApplicationContext context;
@@ -33,7 +36,7 @@ public class CallLimitTests {
 	}
 
 	@Test
-	public void baseTest() throws InterruptedException {
+	public void baseLimitTest() throws InterruptedException {
 		MyTestService0 service = context.getBean(MyTestService0.class);
 
 		Arrays.asList(new String[500]).stream().parallel().forEach((item) -> {
@@ -47,7 +50,7 @@ public class CallLimitTests {
 	}
 
 	@Test
-	public void paramsTest() throws InterruptedException {
+	public void paramsLimitTest() throws InterruptedException {
 		MyTestService0 service = context.getBean(MyTestService0.class);
 
 		Arrays.asList(new String[100]).stream().parallel().forEach((item) -> {
@@ -61,13 +64,27 @@ public class CallLimitTests {
 	}
 
 	@Test
-	public void test() {
+	public void testLimit() {
 		testService(MyTestService1.class);
 		testService(MyTestService2.class);
 		testService(MyTestService3.class);
 		testService(MyTestService4.class);
 		testService(MyTestService5.class);
 		testService(MyTestService6.class);
+	}
+
+	@Test
+	public void testCache() {
+		MyDataProvider0 provider = context.getBean(MyDataProvider0.class);
+
+		Arrays.asList(new String[100]).stream().parallel().forEach((item) -> {
+			log.info("get data: {}", provider.getData());
+			try {
+				Thread.sleep(100 + Double.valueOf(Math.random() * 1000).longValue());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
 	}
 
 	private void testService(Class<? extends TestService> clazz) {

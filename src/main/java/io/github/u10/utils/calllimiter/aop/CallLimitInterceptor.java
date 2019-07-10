@@ -14,11 +14,12 @@ import java.util.concurrent.LinkedBlockingQueue;
 import javax.annotation.PostConstruct;
 import com.google.common.cache.CacheBuilder;
 import io.github.u10.utils.calllimiter.annotation.CallLimit;
+import io.github.u10.utils.calllimiter.config.CallLimiterProperties;
+
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.AnnotatedElementUtils;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CallLimitInterceptor implements MethodInterceptor {
 
 	@Autowired
-	private Environment env;
+	private CallLimiterProperties callLimiterProperties;
 	private Map<String, CallRecord> callHistory;
 	private BlockingQueue<CallRecord> scheduleTasks = new LinkedBlockingQueue<>();
 
@@ -35,11 +36,11 @@ public class CallLimitInterceptor implements MethodInterceptor {
 
 	@PostConstruct
 	private void init() {
-		long cacheSize = env.getProperty("calllimt.cacheSize", Long.class, 1024L);
+		long cacheSize = callLimiterProperties.getLimitManager().getCacheSize();
 		callHistory = CacheBuilder.newBuilder().maximumSize(cacheSize).<String, CallRecord>build().asMap();
 
-		int poolSize = env.getProperty("calllimt.poolSize", Integer.class, 0);
-		es = poolSize == 0 ? Executors.newCachedThreadPool() : Executors.newFixedThreadPool(poolSize);
+		int poolSize = callLimiterProperties.getLimitManager().getPoolSize();
+		es = poolSize <= 0 ? Executors.newCachedThreadPool() : Executors.newFixedThreadPool(poolSize);
 
 		new Thread(() -> {
 			int n = 0;
