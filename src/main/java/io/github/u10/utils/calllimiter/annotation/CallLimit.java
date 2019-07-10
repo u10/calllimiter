@@ -1,4 +1,4 @@
-package com.yjiatech.utils.calllimit.annotation;
+package io.github.u10.utils.calllimiter.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;

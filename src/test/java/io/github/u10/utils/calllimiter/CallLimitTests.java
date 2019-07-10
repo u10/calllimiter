@@ -1,16 +1,16 @@
-package com.yjiatech.utils.calllimit;
+package io.github.u10.utils.calllimiter;
 
 import java.util.Arrays;
 import java.util.concurrent.ForkJoinPool;
-import com.yjiatech.utils.calllimit.annotation.EnableCallLimiter;
-import com.yjiatech.utils.calllimit.services.TestService;
-import com.yjiatech.utils.calllimit.services.impl.MyTestService0;
-import com.yjiatech.utils.calllimit.services.impl.MyTestService1;
-import com.yjiatech.utils.calllimit.services.impl.MyTestService2;
-import com.yjiatech.utils.calllimit.services.impl.MyTestService3;
-import com.yjiatech.utils.calllimit.services.impl.MyTestService4;
-import com.yjiatech.utils.calllimit.services.impl.MyTestService5;
-import com.yjiatech.utils.calllimit.services.impl.MyTestService6;
+import io.github.u10.utils.calllimiter.annotation.EnableCallLimiter;
+import io.github.u10.utils.calllimiter.services.TestService;
+import io.github.u10.utils.calllimiter.services.impl.MyTestService0;
+import io.github.u10.utils.calllimiter.services.impl.MyTestService1;
+import io.github.u10.utils.calllimiter.services.impl.MyTestService2;
+import io.github.u10.utils.calllimiter.services.impl.MyTestService3;
+import io.github.u10.utils.calllimiter.services.impl.MyTestService4;
+import io.github.u10.utils.calllimiter.services.impl.MyTestService5;
+import io.github.u10.utils.calllimiter.services.impl.MyTestService6;
 
 import org.junit.Before;
 import org.junit.Test;

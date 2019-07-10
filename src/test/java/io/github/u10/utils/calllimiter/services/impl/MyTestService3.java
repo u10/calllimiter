@@ -1,6 +1,6 @@
-package com.yjiatech.utils.calllimit.services.impl;
+package io.github.u10.utils.calllimiter.services.impl;
 
-import com.yjiatech.utils.calllimit.services.BaseTestService;
+import io.github.u10.utils.calllimiter.services.BaseTestService;
 
 import org.springframework.stereotype.Component;
 import lombok.extern.slf4j.Slf4j;

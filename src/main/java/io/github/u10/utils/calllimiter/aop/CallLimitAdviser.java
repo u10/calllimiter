@@ -1,9 +1,9 @@
-package com.yjiatech.utils.calllimit.aop;
+package io.github.u10.utils.calllimiter.aop;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
-import com.yjiatech.utils.calllimit.annotation.CallLimit;
+import io.github.u10.utils.calllimiter.annotation.CallLimit;
 import org.aopalliance.aop.Advice;
 import org.springframework.aop.Pointcut;
 import org.springframework.aop.support.AbstractPointcutAdvisor;

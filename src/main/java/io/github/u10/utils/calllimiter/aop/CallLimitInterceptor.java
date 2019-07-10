@@ -1,4 +1,4 @@
-package com.yjiatech.utils.calllimit.aop;
+package io.github.u10.utils.calllimiter.aop;
 
 import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
@@ -13,7 +13,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import javax.annotation.PostConstruct;
 import com.google.common.cache.CacheBuilder;
-import com.yjiatech.utils.calllimit.annotation.CallLimit;
+import io.github.u10.utils.calllimiter.annotation.CallLimit;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.beans.factory.annotation.Autowired;

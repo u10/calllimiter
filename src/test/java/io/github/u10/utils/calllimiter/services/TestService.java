@@ -1,6 +1,6 @@
-package com.yjiatech.utils.calllimit.services;
+package io.github.u10.utils.calllimiter.services;
 
-import com.yjiatech.utils.calllimit.annotation.CallLimit;
+import io.github.u10.utils.calllimiter.annotation.CallLimit;
 import org.springframework.stereotype.Component;
 
 @Component
